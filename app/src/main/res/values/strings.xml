@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ultimate Converter</string>
+
+    <string name="copy_data_label">Output from Ultimate Converter</string>
+    <string name="converter_error">Can´t convert that :(</string>
+
+    <string name="converter_name_ascii">Ascii String</string>
+    <string name="converter_name_bin">Binary</string>
+    <string name="converter_name_dec">Decimal</string>
+    <string name="converter_name_hex">Hexadecimal</string>
 </resources>

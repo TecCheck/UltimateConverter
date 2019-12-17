@@ -9,7 +9,7 @@ public class TypeLoader {
         Converter dec = new Converter() {
             @Override
             public String[] encode(String input) {
-                String[] split = input.split(Misc.separator);
+                String[] split = input.split(Utils.separator);
                 String[] out = new String[split.length];
 
                 for(int i = 0; i < split.length; i++){
@@ -26,12 +26,12 @@ public class TypeLoader {
                     out[i] = Integer.toString(Integer.parseInt(input[i],16));
                 }
 
-                return Misc.addSeperator(out);
+                return Utils.addSeperator(out);
             }
 
             @Override
             public String getName() {
-                return "Decimal";
+                return Utils.appContext.getString(R.string.converter_name_dec);
             }
 
             public String toString(){
@@ -42,17 +42,17 @@ public class TypeLoader {
         Converter hex = new Converter() {
             @Override
             public String[] encode(String input) {
-                return input.split(Misc.separator);
+                return input.split(Utils.separator);
             }
 
             @Override
             public String decode(String[] input) {
-                return Misc.addSeperator(input);
+                return Utils.addSeperator(input);
             }
 
             @Override
             public String getName() {
-                return "Hexadecimal";
+                return Utils.appContext.getString(R.string.converter_name_hex);
             }
 
             public String toString(){
@@ -63,7 +63,7 @@ public class TypeLoader {
         Converter bin = new Converter() {
             @Override
             public String[] encode(String input) {
-                String[] split = input.split(Misc.separator);
+                String[] split = input.split(Utils.separator);
                 String[] out = new String[split.length];
 
                 for(int i = 0; i < split.length; i++){
@@ -80,12 +80,12 @@ public class TypeLoader {
                     out[i] = Integer.toBinaryString(Integer.parseInt(input[i], 16));
                 }
 
-                return Misc.addSeperator(out);
+                return Utils.addSeperator(out);
             }
 
             @Override
             public String getName() {
-                return "Binary";
+                return Utils.appContext.getString(R.string.converter_name_bin);
             }
 
             public String toString(){
@@ -117,7 +117,7 @@ public class TypeLoader {
 
             @Override
             public String getName() {
-                return "Ascii String";
+                return Utils.appContext.getString(R.string.converter_name_ascii);
             }
 
             public String toString(){

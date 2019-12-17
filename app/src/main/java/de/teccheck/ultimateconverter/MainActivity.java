@@ -1,5 +1,7 @@
 package de.teccheck.ultimateconverter;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText editText1 = null;
     EditText editText2 = null;
     ImageButton switchButton = null;
+    ImageButton copyButton = null;
+    ImageButton pasteButton = null;
+
+    ClipboardManager clipboardManager = null;
 
     public boolean disableChange;
 
@@ -34,16 +40,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Utils.appContext = getApplicationContext();
+
+        clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
         SharedPreferences prefs = getPreferences(0);
-        Misc.separator = prefs.getString("separator", Misc.separator);
+        Utils.separator = prefs.getString("separator", Utils.separator);
 
         spinner1 = findViewById(R.id.spinner1);
         spinner2 = findViewById(R.id.spinner2);
         editText1 = findViewById(R.id.editText1);
         editText2 = findViewById(R.id.editText2);
         switchButton = findViewById(R.id.switchButton);
+        copyButton = findViewById(R.id.copyButton);
+        pasteButton = findViewById(R.id.pasteButton);
 
         switchButton.setOnClickListener(this);
+        copyButton.setOnClickListener(this);
+        pasteButton.setOnClickListener(this);
 
         typeList = TypeLoader.loadTypes();
         for (Converter conv : typeList){
@@ -90,14 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Converter converter1 = (Converter) spinner1.getSelectedItem();
         Converter converter2 = (Converter) spinner2.getSelectedItem();
 
-        String converted = Misc.getErrorString();
+        String converted = getString(R.string.converter_error);
         try {
-            //Get from first Converter
+            // Get from first Converter
             String[] conv = converter1.encode(editText1.getText().toString());
 
             System.out.println(Arrays.toString(conv));
 
-            //Get from second Converter
+            // Get from second Converter
             converted = converter2.decode(conv);
 
         }catch (Exception ignored){
@@ -106,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText2.setText(converted);
     }
 
-    @Override
-    public void onClick(View view) {
+    void switchText(){
         disableChange = true;
         String s1 = editText1.getText().toString();
         String s2 = editText2.getText().toString();
@@ -124,5 +137,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         disableChange = false;
 
         onTextChange();
+    }
+
+    void copyText(){
+        if(clipboardManager == null)
+            clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+        ClipData clipData = ClipData.newPlainText(getString(R.string.copy_data_label), editText2.getText());
+        clipboardManager.setPrimaryClip(clipData);
+    }
+
+    void pasteText(){
+        if(clipboardManager == null)
+            clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+        if(clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0){
+            CharSequence text = clipboardManager.getPrimaryClip().getItemAt(0).getText();
+            editText1.setText(text);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == switchButton.getId())
+            switchText();
+        else if(view.getId() == copyButton.getId())
+            copyText();
+        else if(view.getId() == pasteButton.getId())
+            pasteText();
     }
 }

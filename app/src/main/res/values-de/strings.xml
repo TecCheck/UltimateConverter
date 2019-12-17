@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ultimate Converter</string>
+
+    <string name="copy_data_label">Ausgabe von Ultimate Converter</string>
+    <string name="converter_error">Dieser Text konnte nicht konvertiert werden</string>
+
+    <string name="converter_name_ascii">Ascii Text</string>
+    <string name="converter_name_bin">Binär</string>
+    <string name="converter_name_dec">Dezimal</string>
+    <string name="converter_name_hex">Hexadezimal</string>
+</resources>

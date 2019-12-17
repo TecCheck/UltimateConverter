@@ -9,7 +9,7 @@
 ### How to add another Convert Method
 This is not the verry best way to implement something like that, but I'm just a beginner.
 
-Everything is sent from the encoder to the decoder as an array of hex Strings. You need to create an new `Converter` and add it to list of converters. You can send multiple values at once to the decoder using the String array. You also need to provide a name and a `toString` method.
+Everything is sent from the encoder to the decoder as an array of hex Strings. You need to create an new `Converter` and add it to list of converters. You can send multiple values at once to the decoder using the String array. You also need to provide a `toString` method and a name. For that I would recomend to use a string from an android resource file.
 
 ```java
 Converter ascii = new Converter() {
@@ -36,7 +36,7 @@ Converter ascii = new Converter() {
 
     @Override
     public String getName() {
-        return "Ascii String";
+        return Utils.appContext.getString(R.string.converter_name_ascii);
     }
 
     public String toString(){
