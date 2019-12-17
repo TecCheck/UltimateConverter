@@ -8,7 +8,7 @@ public class TypeLoader {
 
         Converter dec = new Converter() {
             @Override
-            public String[] fromInput(String input) {
+            public String[] encode(String input) {
                 String[] split = input.split(Misc.separator);
                 String[] out = new String[split.length];
 
@@ -19,7 +19,7 @@ public class TypeLoader {
             }
 
             @Override
-            public String toOutput(String[] input) {
+            public String decode(String[] input) {
                 String[] out = new String[input.length];
 
                 for(int i = 0; i < input.length; i++){
@@ -41,12 +41,12 @@ public class TypeLoader {
 
         Converter hex = new Converter() {
             @Override
-            public String[] fromInput(String input) {
+            public String[] encode(String input) {
                 return input.split(Misc.separator);
             }
 
             @Override
-            public String toOutput(String[] input) {
+            public String decode(String[] input) {
                 return Misc.addSeperator(input);
             }
 
@@ -62,7 +62,7 @@ public class TypeLoader {
 
         Converter bin = new Converter() {
             @Override
-            public String[] fromInput(String input) {
+            public String[] encode(String input) {
                 String[] split = input.split(Misc.separator);
                 String[] out = new String[split.length];
 
@@ -73,7 +73,7 @@ public class TypeLoader {
             }
 
             @Override
-            public String toOutput(String[] input) {
+            public String decode(String[] input) {
                 String[] out = new String[input.length];
 
                 for(int i = 0; i < input.length; i++){
@@ -95,7 +95,7 @@ public class TypeLoader {
 
         Converter ascii = new Converter() {
             @Override
-            public String[] fromInput(String input) {
+            public String[] encode(String input) {
                 char[] chars = input.toCharArray();
                 String[] out = new String[chars.length];
 
@@ -106,7 +106,7 @@ public class TypeLoader {
             }
 
             @Override
-            public String toOutput(String[] input) {
+            public String decode(String[] input) {
                 String out = "";
 
                 for(String s : input){

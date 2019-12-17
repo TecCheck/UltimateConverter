@@ -93,12 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String converted = Misc.getErrorString();
         try {
             //Get from first Converter
-            String[] conv = converter1.fromInput(editText1.getText().toString());
+            String[] conv = converter1.encode(editText1.getText().toString());
 
             System.out.println(Arrays.toString(conv));
 
             //Get from second Converter
-            converted = converter2.toOutput(conv);
+            converted = converter2.decode(conv);
 
         }catch (Exception ignored){
             ignored.printStackTrace();
