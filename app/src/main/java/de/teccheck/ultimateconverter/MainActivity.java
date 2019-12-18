@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Get from second Converter
             converted = converter2.decode(conv);
 
-        }catch (Exception ignored){
-            ignored.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
         }
         editText2.setText(converted);
     }

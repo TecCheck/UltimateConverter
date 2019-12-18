@@ -3,6 +3,7 @@
     <string name="app_name">Ultimate Converter</string>
 
     <string name="copy_data_label">Ausgabe von Ultimate Converter</string>
+    <string name="switch_description">Tauscht Input und Output</string>
     <string name="converter_error">Dieser Text konnte nicht konvertiert werden</string>
 
     <string name="converter_name_ascii">Ascii Text</string>

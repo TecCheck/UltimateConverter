@@ -124,12 +124,12 @@ public class TypeLoader {
 
             @Override
             public String decode(String[] input) {
-                String out = "";
+                StringBuilder out = new StringBuilder();
 
                 for(String s : input){
-                    out += String.valueOf((char) Integer.parseInt(s, 16));
+                    out.append(Integer.parseInt(s, 16));
                 }
-                return out;
+                return out.toString();
             }
 
             @Override
