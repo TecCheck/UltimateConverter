@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Ultimate Converter</string>
 
+    // Main Activity
     <string name="copy_data_label">Output from Ultimate Converter</string>
     <string name="switch_description">switch input and output</string>
     <string name="converter_error">Can´t convert that :(</string>
@@ -10,4 +11,15 @@
     <string name="converter_name_bin">Binary</string>
     <string name="converter_name_dec">Decimal</string>
     <string name="converter_name_hex">Hexadecimal</string>
+
+    // About Activity
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="creator">Creator</string>
+    <string name="teccheck">TecCheck</string>
+    <string name="github">GitHub</string>
+    <string name="github_desc">Visit the GitHub repo</string>
+    <string name="github_url" translatable="false">https://github.com/TecCheck/UltimateConverter/</string>
+    <string name="creator_url" translatable="false">https://github.com/TecCheck</string>
+
 </resources>

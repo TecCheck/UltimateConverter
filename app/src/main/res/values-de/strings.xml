@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Ultimate Converter</string>
 
+    // Main Activity
     <string name="copy_data_label">Ausgabe von Ultimate Converter</string>
     <string name="switch_description">Tauscht Input und Output</string>
     <string name="converter_error">Dieser Text konnte nicht konvertiert werden</string>
@@ -10,4 +11,12 @@
     <string name="converter_name_bin">Binär</string>
     <string name="converter_name_dec">Dezimal</string>
     <string name="converter_name_hex">Hexadezimal</string>
+
+    // About Activity
+    <string name="about">Über</string>
+    <string name="version">Version</string>
+    <string name="creator">Macher</string>
+    <string name="teccheck">TecCheck</string>
+    <string name="github">GitHub</string>
+    <string name="github_desc">Die GitHub repo besuchen</string>
 </resources>
