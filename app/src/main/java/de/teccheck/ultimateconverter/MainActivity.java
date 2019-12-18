@@ -3,9 +3,12 @@ package de.teccheck.ultimateconverter;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,9 +95,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText1.addTextChangedListener(textWatcher);
         spinner1.setOnItemSelectedListener(listener);
         spinner2.setOnItemSelectedListener(listener);
+
+        Converter converter1 = (Converter) spinner1.getSelectedItem();
+        Converter converter2 = (Converter) spinner2.getSelectedItem();
+        editText1.setInputType(converter1.getInputType());
+        editText2.setInputType(converter2.getInputType());
     }
 
     void onTextChange(){
+        AnimatedVectorDrawableCompat drawable = (AnimatedVectorDrawableCompat) switchButton.getDrawable();
+        drawable.start();
+
         if(disableChange)
             return;
         if(editText1.getText().toString().equals("")){
@@ -103,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         Converter converter1 = (Converter) spinner1.getSelectedItem();
         Converter converter2 = (Converter) spinner2.getSelectedItem();
+
+        editText1.setInputType(converter1.getInputType());
+        editText2.setInputType(converter2.getInputType());
 
         String converted = getString(R.string.converter_error);
         try {

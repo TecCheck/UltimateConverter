@@ -1,5 +1,7 @@
 package de.teccheck.ultimateconverter;
 
+import android.text.InputType;
+
 import java.util.ArrayList;
 
 public class TypeLoader {
@@ -30,6 +32,11 @@ public class TypeLoader {
             }
 
             @Override
+            public int getInputType(){
+                return InputType.TYPE_CLASS_NUMBER;
+            }
+
+            @Override
             public String getName() {
                 return Utils.appContext.getString(R.string.converter_name_dec);
             }
@@ -53,6 +60,11 @@ public class TypeLoader {
             @Override
             public String getName() {
                 return Utils.appContext.getString(R.string.converter_name_hex);
+            }
+
+            @Override
+            public int getInputType(){
+                return InputType.TYPE_CLASS_TEXT;
             }
 
             public String toString(){
@@ -81,6 +93,11 @@ public class TypeLoader {
                 }
 
                 return Utils.addSeperator(out);
+            }
+
+            @Override
+            public int getInputType(){
+                return InputType.TYPE_CLASS_NUMBER;
             }
 
             @Override
@@ -113,6 +130,11 @@ public class TypeLoader {
                     out += String.valueOf((char) Integer.parseInt(s, 16));
                 }
                 return out;
+            }
+
+            @Override
+            public int getInputType(){
+                return InputType.TYPE_CLASS_TEXT;
             }
 
             @Override
