@@ -64,7 +64,7 @@ public class TypeLoader {
 
             @Override
             public int getInputType(){
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
             }
 
             public String toString(){
@@ -134,7 +134,7 @@ public class TypeLoader {
 
             @Override
             public int getInputType(){
-                return InputType.TYPE_CLASS_TEXT;
+                return InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
             }
 
             @Override
