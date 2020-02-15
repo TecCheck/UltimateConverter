@@ -127,7 +127,7 @@ public class TypeLoader {
                 StringBuilder out = new StringBuilder();
 
                 for(String s : input){
-                    out.append(Integer.parseInt(s, 16));
+                    out.append((char) Integer.parseInt(s, 16));
                 }
                 return out.toString();
             }

@@ -8,6 +8,7 @@ import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton switchButton = null;
     ImageButton copyButton = null;
     ImageButton pasteButton = null;
+
+    Converter converter1 = null;
+    Converter converter2 = null;
 
     ClipboardManager clipboardManager = null;
 
@@ -68,12 +72,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             nameList.add(conv.getName());
         }
 
-        SpinnerAdapter spinnerAdapter1 = new ArrayAdapter<>(this.getBaseContext(),R.layout.support_simple_spinner_dropdown_item, typeList);
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this.getBaseContext(),R.layout.support_simple_spinner_dropdown_item, typeList);
 
         AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 onTextChange();
+                converter1 = (Converter) spinner1.getSelectedItem();
+                converter2 = (Converter) spinner2.getSelectedItem();
+                if(converter1 != null){
+                    editText1.setInputType(converter1.getInputType() | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                    editText2.setInputType(converter2.getInputType() | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
@@ -90,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void afterTextChanged(Editable editable) {}
         };
 
-        spinner1.setAdapter(spinnerAdapter1);
-        spinner2.setAdapter(spinnerAdapter1);
+        spinner1.setAdapter(spinnerAdapter);
+        spinner2.setAdapter(spinnerAdapter);
 
         editText1.addTextChangedListener(textWatcher);
         spinner1.setOnItemSelectedListener(listener);
@@ -126,10 +136,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editText2.setText("");
             return;
         }
-        Converter converter1 = (Converter) spinner1.getSelectedItem();
-        Converter converter2 = (Converter) spinner2.getSelectedItem();
-
-        editText1.setInputType(converter1.getInputType());
+        converter1 = (Converter) spinner1.getSelectedItem();
+        converter2 = (Converter) spinner2.getSelectedItem();
 
         String converted = getString(R.string.converter_error);
         try {
